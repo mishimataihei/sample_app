@@ -114,7 +114,8 @@ describe "User pages" do
     end
   end
 
-  describe "edit" do
+
+ describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
     before do
       sign_in user
@@ -145,5 +146,4 @@ describe "User pages" do
       specify { expect(user.reload.email).to eq new_email }
     end
   end
-
 end
