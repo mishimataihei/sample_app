@@ -1,6 +1,16 @@
 class UsersController < ApplicationController
+<<<<<<< HEAD
   before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
+=======
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user,     only: :destroy
+
+  def index
+    @users = User.paginate(page: params[:page])
+  end
+>>>>>>> updating-users
 
   def show
     @user = User.find(params[:id])
@@ -33,6 +43,15 @@ class UsersController < ApplicationController
     end
   end
 
+<<<<<<< HEAD
+=======
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_url
+  end
+
+>>>>>>> updating-users
   private
 
     def user_params
@@ -43,11 +62,25 @@ class UsersController < ApplicationController
     # Before actions
 
     def signed_in_user
+<<<<<<< HEAD
       redirect_to signin_url, notice: "Please sign in." unless signed_in?
+=======
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "Please sign in."
+      end
+>>>>>>> updating-users
     end
 
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
     end
+<<<<<<< HEAD
+=======
+
+    def admin_user
+      redirect_to(root_path) unless current_user.admin?
+    end
+>>>>>>> updating-users
 end
