@@ -115,7 +115,7 @@ describe "User pages" do
   end
 
 
- describe "edit" do
+  describe "edit" do
     let(:user) { FactoryGirl.create(:user) }
     before do
       sign_in user
